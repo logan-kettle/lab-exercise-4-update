@@ -8,25 +8,25 @@
 #include <algorithm>
 #include <memory>
 #include <queue>
+#include <vector>
 #include <cassert>
 #include "Process.h"
-// RoundRobin Scheduler
+//RoundRobin Scheduler
 
-// You can try 3 different approaches to change time_quantum
-// as the CPU keeps working
+//You can try 3 different approaches to change time_quantum 
+//as the CPU keeps working
 /*
 1. use the least execution time of a certain process as the time quantum
 2. Always use the greatest common dividor as the time quantum
 3. Use a constant
 */
 
-class RoundRobin
-{
+class RoundRobin {
 private:
 	int time_quantum;
 	// used shared pointer from c++11 features
-	queue<shared_ptr<Process>> processVec;
-
+	vector<Process> processVec;
+	queue<Process> processQ;
 public:
 	RoundRobin();
 	RoundRobin(string file, int time_quantum);
@@ -36,5 +36,7 @@ public:
 	void schedule_tasks();
 	void print(int system_time, int pid, bool isComplete);
 };
+
+
 
 #endif
